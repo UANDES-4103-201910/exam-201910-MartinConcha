@@ -10,7 +10,7 @@
 </div> 
 <% total=0 %>
 <% @cart.each do |k,v|%>
-	<%=  Order.create(user_id: current_user.id, product_id: k) %>
+	<% Order.create(user_id: current_user.id, product_id: k) %>
 	<div class="row">
 	    <div class="col-sm-2"><%= Product.find(k).brand %></div>
 	    <div class="col-sm-2"><%= Product.find(k).model %></div>
