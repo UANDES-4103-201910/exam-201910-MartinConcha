@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @product.brand %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @product.model %>
+</p>
+
+<p>
+  <strong>Variant:</strong>
+  <%= @product.variant %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @product.price %>
+</p>
+
+<p>
+  <strong>Short:</strong>
+  <%= @product.short %>
+</p>
+
+<p>
+  <strong>Long:</strong>
+  <%= @product.long %>
+</p>
+<%=form_with(url:'/shopping_cart/add', local: true) do |form| %>
+    <%=form.select(:product_id, Product.where(id: params[:id]).collect {|p| p.id}) %>
+    <%=form.select(:amount, options_for_select((1..10).map { |val| [val, val]} )) %><br>
+  <div class="actions">
+    <br><%= form.submit 'Add to cart' %>
+  </div>
+<%end%>
+<%= link_to 'Back', products_path %>

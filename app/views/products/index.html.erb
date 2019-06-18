@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Products</h1>
+<div class="row">
+  <div class="col-sm-2">Brand</div>
+  <div class="col-sm-2">Model</div>
+  <div class="col-sm-2">Variant</div>
+  <div class="col-sm-2">Price</div>
+  <div class="col-sm-2">Short</div>
+  <div class="col-sm-2">Long</div>
+</div> 
+<% @products.each do |product| %>
+  <div class="row">
+    <div class="col-sm-2"><%= product.brand %></div>
+    <div class="col-sm-2"><%= product.model %></div>
+    <div class="col-sm-2"><%= product.variant %></div>
+    <div class="col-sm-2">$ <%= product.price %></div>
+    <div class="col-sm-2"><%= product.short %></div>
+    <div class="col-sm-2"><%= product.long %></div>
+    <div class="col-sm-2"><%= link_to 'Show', product %></div>
+  </div> 
+<% end %>
+
+<br>

@@ -1,0 +1,39 @@
+<h1>Check out</h1><br>
+<p><%= DateTime.now %></p><br>
+<div class="row">
+  <div class="col-sm-2">Brand</div>
+  <div class="col-sm-2">Model</div>
+  <div class="col-sm-2">Variant</div>
+  <div class="col-sm-2">Price</div>
+  <div class="col-sm-2">Short</div>
+  <div class="col-sm-2">Long</div>
+</div> 
+<% total=0 %>
+<% @cart.each do |k,v|%>
+	<%=  Order.create(user_id: current_user.id, product_id: k) %>
+	<div class="row">
+	    <div class="col-sm-2"><%= Product.find(k).brand %></div>
+	    <div class="col-sm-2"><%= Product.find(k).model %></div>
+	    <div class="col-sm-2"><%= Product.find(k).variant %></div>
+	    <div class="col-sm-2">$ <%= Product.find(k).price %></div>
+	    <div class="col-sm-2"><%= Product.find(k).short %></div>
+	    <div class="col-sm-2"><%= Product.find(k).long %></div>
+	    <div class="col-sm-2"><%= total += v*Product.find(k).price %></div>
+	</div>
+<% end %>
+<br><h4>Total: <%= total %></h4><br><br>
+
+<%= form_with(model: @order, html: { multipart: true }, local: true) do |form| %>
+	<p>
+	    <%= form.label :billing, "Billing address" %><br>
+	    <strong><%= form.text_field :billing, :required => true %></strong>
+    </p>
+    <p>
+	    <%= form.label :billing, "Shipping address" %><br>
+	    <strong><%= form.text_field :billing, :required => true %></strong>
+    </p>
+    <p>
+    	<%= form.submit "Finalize Order" %>
+    </p>
+<% end %>
+

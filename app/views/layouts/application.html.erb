@@ -10,6 +10,59 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav>
+      <div class="nav nav-wrapper">     
+        <ul class="left hide-on-med-and-down">
+          <li><%= link_to "Z-Mobile", root_path %></li>
+          <li><%= link_to "Handsets", products_path %></li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+          <% if signed_in? %>
+            <li>
+              <%=link_to('Cart', '/shopping_cart') %> 
+            </li>
+            <li><%= link_to edit_user_registration_path do%>
+                <%= current_user.email %>
+              <% end %>
+            </li> 
+            <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li> 
+            
+          <% else %>
+            <li><%= link_to "Sign up", new_user_registration_path %></li>
+            <li><%= link_to "Log in", new_user_session_path %></li>
+          <% end %>
+
+        </ul>
+      </div>
+    </nav>
+    <% if flash[:error] %>
+      <div class="alert alert-danger fade in" role="alert" id="errors" ><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <%= flash[:error] %></div>
+    <% elsif flash[:success] %>
+      <div class="alert alert-success fade in" role="alert" id="success" ><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><%= flash[:success] %></div>
+    <% elsif flash[:notice] %>
+      <div class="alert alert-success fade in" role="alert" id="success" ><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><%= flash[:notice] %></div>
+    <% elsif flash[:alert] %>
+      <div class="alert alert-danger fade in" role="alert" id="errors" ><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><%= flash[:alert] %></div>
+    <% end %>
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-2">
+        </div>
+        <div class="col-md-auto">
+          <%= yield %>
+        </div>
+        <div class="col col-lg-2">
+        </div>
+      </div>
+    </div>
+    <footer class="page-footer font-small blue pt-4">
+      <div class="row">
+        <div class="col-md-6 mt-md-0 mt-3">
+          <h5 class="text-uppercase">Footer Content</h5>
+          <p>Call center: (02) 2292345</p>
+          <p>HQ address: Universidad de los Andes, Santiago</p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

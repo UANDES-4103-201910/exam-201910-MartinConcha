@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  billing: MyString
+  shipping: MyString
+  string: MyString
+  user: one
+  product: one
+
+two:
+  billing: MyString
+  shipping: MyString
+  string: MyString
+  user: two
+  product: two
