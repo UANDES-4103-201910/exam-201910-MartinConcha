@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   post 'shopping_cart/add', to: 'shopping_carts#add_product'
   get 'checkout', to: 'shopping_carts#checkout'
   resources :products
-  resources :order, only[:update, :show]
+  resources :orders
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
